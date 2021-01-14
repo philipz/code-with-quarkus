@@ -26,13 +26,11 @@
 		"vscjava.vscode-java-pack",
 		"redhat.vscode-quarkus"
 	],
-	"runArgs": [
-		"-v",
-		"/var/run/docker.sock:/var/run/docker.sock"
-	],
+	"runArgs": ["--init"],
 	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
 		"source=extensions,target=/root/.vscode-server/extensions,type=volume",
-		"type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2"
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8080],

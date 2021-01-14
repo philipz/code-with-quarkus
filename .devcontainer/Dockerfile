@@ -5,17 +5,12 @@ ARG VARIANT="15"
 FROM mcr.microsoft.com/vscode/devcontainers/java:0-${VARIANT}
 
 # Install Docker
-RUN apt-get update && apt-get -y install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && apt-key fingerprint 0EBFCD88 && add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
-RUN apt-get update && apt-get install docker-ce-cli
+RUN apt-get update \
+    && apt-get install -y apt-transport-https ca-certificates curl gnupg2 lsb-release \
+    && curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | apt-key add - 2>/dev/null \
+    && echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list \
+    && apt-get update \
+    && apt-get install -y docker-ce-cli
 
 # [Option] Install Maven
 ARG INSTALL_MAVEN="false"
