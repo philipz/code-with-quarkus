@@ -17,8 +17,8 @@
             "preLaunchTask": "quarkus:remote-dev",
             "type": "java",
             "request": "attach",
-            "hostName": "172.30.137.21",
-            "name": "Remote Debug Quarkus application",
+            "hostName": "192.168.2.59",
+            "name": "Remote Debugging Quarkus application",
             "port": 5005
         }
     ]
