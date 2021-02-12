@@ -6,7 +6,7 @@
 		{
 			"label": "quarkus:dev",
 			"type": "shell",
-			"command": "./mvnw quarkus:dev ",
+			"command": "telepresence --new-deployment quarkus --run ./mvnw quarkus:dev ",
 			"windows": {
 				"command": ".\\mvnw.cmd quarkus:dev "
 			},
@@ -25,32 +25,6 @@
 						"activeOnStart": true,
 						"beginsPattern": "^.*Scanning for projects...*",
 						"endsPattern": "^.*Quarkus .* started in .*\\. Listening on:*"
-					}
-				}
-			]
-		},
-		{
-			"label": "quarkus:remote-dev",
-			"type": "shell",
-			"command": "./mvnw quarkus:remote-dev -Ddebug=false -Dquarkus.package.type=mutable-jar -Dquarkus.live-reload.url=http://192.168.2.59:8080 -Dquarkus.live-reload.password=123",
-			"windows": {
-				"command": ".\\mvnw.cmd quarkus:dev -Ddebug=false -Dquarkus.package.type=mutable-jar -Dquarkus.live-reload.url=http://192.168.2.59:8080 -Dquarkus.live-reload.password=123"
-			},
-			"isBackground": true,
-			"problemMatcher": [
-				{
-					"pattern": [
-						{
-							"regexp": "\\b\\B",
-							"file": 1,
-							"location": 2,
-							"message": 3
-						}
-					],
-					"background": {
-						"activeOnStart": true,
-						"beginsPattern": "^.*Scanning for projects...*",
-						"endsPattern": "^.*Quarkus augmentation completed in *"
 					}
 				}
 			]

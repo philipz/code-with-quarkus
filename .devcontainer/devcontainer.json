@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.154.2/containers/java
 {
-	"name": "Java",
+	"name": "Telepresence Java",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
@@ -26,8 +26,9 @@
 		"vscjava.vscode-java-pack",
 		"redhat.vscode-quarkus"
 	],
-	"runArgs": ["--init"],
+	"runArgs": [  "--cap-add=NET_ADMIN", "--cap-add=NET_BIND_SERVICE", "--init"],
 	"mounts": [
+		"source=/home/philipz/.kube/config,target=/kube/config,type=bind",
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
 		"source=extensions,target=/root/.vscode-server/extensions,type=volume",
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind"
