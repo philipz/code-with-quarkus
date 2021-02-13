@@ -12,14 +12,6 @@
             "hostName": "localhost",
             "name": "Debug Quarkus application",
             "port": 5005
-        },
-        {
-            "preLaunchTask": "quarkus:remote-dev",
-            "type": "java",
-            "request": "attach",
-            "hostName": "192.168.2.59",
-            "name": "Remote Debugging Quarkus application",
-            "port": 5005
         }
     ]
 }

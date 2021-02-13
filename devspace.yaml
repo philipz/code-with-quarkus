@@ -1,0 +1,62 @@
+version: v1beta9
+images:
+  app:
+    image: philipz/code-with-quarkus
+    preferSyncOverRebuild: true
+    injectRestartHelper: true
+    appendDockerfileInstructions:
+    - USER root
+    build:
+      docker:
+        options:
+          target: build
+deployments:
+- name: code-with-quarkus-old
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - image: philipz/code-with-quarkus
+      service:
+        ports:
+        - port: 8080
+dev:
+  ports:
+  - imageName: app
+    forward:
+    - port: 8080
+    - port: 5005
+  open:
+  - url: http://localhost:8080
+  sync:
+  - imageName: app
+    excludePaths:
+    - .git/
+    uploadExcludePaths:
+    - Dockerfile
+    - target/
+    - devspace.yaml
+    onUpload:
+      restartContainer: true
+profiles:
+- name: production
+  description: ""
+  patches:
+  - op: remove
+    path: images.app.appendDockerfileInstructions
+  - op: remove
+    path: images.app.injectRestartHelper
+  - op: remove
+    path: images.app.build.docker.options.target
+- name: interactive
+  description: ""
+  patches:
+  - op: add
+    path: dev.interactive
+    value:
+      defaultEnabled: true
+  - op: add
+    path: images.app.entrypoint
+    value:
+    - sleep
+    - "9999999999"

@@ -1,5 +1,6 @@
-*
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+Dockerfile
+target/
+.git
+.devcontainer/
+# Ignore devspace.yaml file to prevent image rebuilding after config changes
+devspace.yaml
