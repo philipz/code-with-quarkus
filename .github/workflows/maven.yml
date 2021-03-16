@@ -24,6 +24,11 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
+    - name: Dockerize
+      uses: maxday/quarkus-dockerize-action@master
+      with:
+        tag: philipz/code-with-quarkus
+        executablePath: code-with-quarkus-1.0.0-SNAPSHOT-runner
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
       with:
