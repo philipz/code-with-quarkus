@@ -1,5 +1,5 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.154.2/containers/java
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.166.1/containers/java
 {
 	"name": "Java",
 	"build": {
@@ -28,12 +28,13 @@
 	],
 	"runArgs": ["--init"],
 	"mounts": [
-		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
 		"source=extensions,target=/root/.vscode-server/extensions,type=volume",
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind"
 	],
+	"overrideCommand": false
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	//"forwardPorts": [8080],
+	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
