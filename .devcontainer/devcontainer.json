@@ -32,7 +32,7 @@
 		"source=extensions,target=/root/.vscode-server/extensions,type=volume",
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind"
 	],
-	"overrideCommand": false
+	"overrideCommand": false,
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
